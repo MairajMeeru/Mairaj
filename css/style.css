@@ -111,8 +111,8 @@
     align-items: center;
     overflow: hidden;
     background-color: #0c0d14;
-    padding-top: 6rem;
-    padding-bottom: 5rem;
+    padding-top: 10rem;
+    padding-bottom: 6rem;
     margin-bottom: 0 !important;
 }
 
@@ -239,10 +239,43 @@
 }
 
 .hero-desc {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.8);
-    max-width: 520px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 680px;
+}
+
+/* Hero Stat Cards */
+.hero-stat-card {
+    padding: 16px 18px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 14px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+}
+
+.hero-stat-card:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.28);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.hero-stat-card h4 {
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 1.85rem;
+    margin-bottom: 2px;
+}
+
+.hero-stat-card small {
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
 }
 
 /* Hero Action Buttons */
@@ -408,14 +441,8 @@
 @media (max-width: 991.98px) {
     #home {
         min-height: auto;
-        padding-top: 6rem;
-        padding-bottom: 4rem;
-    }
-    .hero-float-card-1 {
-        left: 0;
-    }
-    .hero-float-card-2 {
-        right: 0;
+        padding-top: 8.5rem;
+        padding-bottom: 4.5rem;
     }
     .hero-controls {
         bottom: 15px;
