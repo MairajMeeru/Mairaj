@@ -121,6 +121,35 @@
         loop: true,
     });
 
+
+    // Hero Background Video Controls
+    var heroVideo = document.getElementById('heroBgVideo');
+    if (heroVideo) {
+        $('#heroVideoToggle').on('click', function () {
+            if (heroVideo.paused) {
+                heroVideo.play();
+                $('#heroVideoIcon').removeClass('bi-play-fill').addClass('bi-pause-fill');
+                $(this).attr('title', 'Pause Video');
+            } else {
+                heroVideo.pause();
+                $('#heroVideoIcon').removeClass('bi-pause-fill').addClass('bi-play-fill');
+                $(this).attr('title', 'Play Video');
+            }
+        });
+
+        $('#heroMuteToggle').on('click', function () {
+            if (heroVideo.muted) {
+                heroVideo.muted = false;
+                $('#heroMuteIcon').removeClass('bi-volume-mute-fill').addClass('bi-volume-up-fill');
+                $(this).attr('title', 'Mute Video');
+            } else {
+                heroVideo.muted = true;
+                $('#heroMuteIcon').removeClass('bi-volume-up-fill').addClass('bi-volume-mute-fill');
+                $(this).attr('title', 'Unmute Video');
+            }
+        });
+    }
+
     
 })(jQuery);
 

@@ -74,32 +74,93 @@
     <!-- Navbar End -->
 
 
-    <!-- Header Start -->
-    <div class="container-fluid bg-white my-6 mt-0" id="home">
-        <div class="container">
+    <!-- Header / Hero Start -->
+    <div class="container-fluid hero-header my-6 mt-0 p-0" id="home">
+        <!-- Video Background Container -->
+        <div class="hero-video-box">
+            <video id="heroBgVideo" autoplay muted loop playsinline preload="auto" poster="img/bg-header.png">
+                <source src="img/video.mp4" type="video/mp4">
+            </video>
+            <!-- Luxury Multi-layer Gradient Overlay -->
+            <div class="hero-video-overlay"></div>
+            <!-- Smooth Bottom Fade into Content -->
+            <div class="hero-bottom-fade"></div>
+        </div>
+
+        <!-- Video Playback & Sound Control Badge -->
+        <div class="hero-controls">
+            <button id="heroVideoToggle" class="hero-control-btn" type="button" title="Pause / Play Video" aria-label="Toggle Background Video">
+                <i class="bi bi-pause-fill" id="heroVideoIcon"></i>
+            </button>
+            <button id="heroMuteToggle" class="hero-control-btn" type="button" title="Mute / Unmute" aria-label="Toggle Video Audio">
+                <i class="bi bi-volume-mute-fill" id="heroMuteIcon"></i>
+            </button>
+        </div>
+
+        <div class="container position-relative hero-content-container">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 py-6 pb-0 pt-lg-0">
-                    <h3 class="text-primary mb-3">I'm</h3>
-                    <h1 class="display-4 mb-3">M Mairaj</h1>
-                    <h2 class="typed-text-output d-inline"></h2>
-                    <div class="typed-text d-none">Web Designer, Web Developer, Front End Developer, Apps Designer, Apps
-                        Developer</div>
-                    <div class="d-flex align-items-center pt-5">
-                        <a href="" class="btn btn-primary py-3 px-4 me-5">Download CV</a>
-                        <button type="button" class="btn-play" data-bs-toggle="modal"
-                            data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
-                            <span></span>
-                        </button>
-                        <h5 class="ms-4 mb-0 d-none d-sm-block">Play Video</h5>
+                    <div class="hero-badge mb-3 wow fadeInDown" data-wow-delay="0.1s">
+                        <span class="badge-dot"></span>
+                        <span class="badge-text">Available for Projects & Full-time</span>
+                    </div>
+                    <h3 class="hero-greeting text-secondary mb-2 wow fadeInUp" data-wow-delay="0.2s">Hello, I'm</h3>
+                    <h1 class="display-3 mb-3 text-white fw-bold hero-title wow fadeInUp" data-wow-delay="0.3s">M Mairaj</h1>
+                    <div class="hero-typing-wrap mb-4 wow fadeInUp" data-wow-delay="0.4s">
+                        <span class="text-white-50 me-2">A creative</span>
+                        <h2 class="typed-text-output d-inline text-warning fw-bold"></h2>
+                    </div>
+                    <div class="typed-text d-none">Web Designer, Web Developer, Front End Developer, Apps Designer, Apps Developer</div>
+                    
+                    <p class="hero-desc mb-4 wow fadeInUp" data-wow-delay="0.5s">
+                        Crafting high-performance web applications, bespoke UI/UX designs, and modern digital experiences that turn complex problems into elegant solutions.
+                    </p>
+
+                    <div class="d-flex flex-wrap align-items-center gap-3 pt-2 wow fadeInUp" data-wow-delay="0.6s">
+                        <a href="#contact" class="btn btn-primary btn-hero-primary py-3 px-4 shadow-lg">
+                            <span>Get In Touch</span>
+                            <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                        <a href="" class="btn btn-outline-light btn-hero-outline py-3 px-4">
+                            <span>Download CV</span>
+                        </a>
+                        <div class="d-flex align-items-center ms-lg-2 mt-2 mt-sm-0">
+                            <button type="button" class="btn-play" data-bs-toggle="modal"
+                                data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
+                                <span></span>
+                            </button>
+                            <h5 class="ms-3 mb-0 text-white-50 fs-6 d-none d-sm-block">Play Video</h5>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6 mt-6 text-center text-lg-start wow zoomIn" data-wow-delay="0.5s">
-                    <img class="img-fluid" src="img/ss.png" alt="">
+
+                <div class="col-lg-6 mt-6 text-center text-lg-end wow zoomIn" data-wow-delay="0.5s">
+                    <div class="hero-avatar-wrapper">
+                        <div class="hero-avatar-glow"></div>
+                        <img class="img-fluid hero-avatar-img" src="img/ss.png" alt="M Mairaj">
+                        
+                        <!-- Floating Glassmorphic Status Cards -->
+                        <div class="hero-float-card hero-float-card-1">
+                            <div class="float-card-icon"><i class="bi bi-code-slash"></i></div>
+                            <div class="float-card-text text-start">
+                                <span class="d-block fw-bold text-white small">Clean Code</span>
+                                <small class="text-white-50" style="font-size: 11px;">Modern Standards</small>
+                            </div>
+                        </div>
+
+                        <div class="hero-float-card hero-float-card-2">
+                            <div class="float-card-icon float-card-icon-warning"><i class="bi bi-star-fill"></i></div>
+                            <div class="float-card-text text-start">
+                                <span class="d-block fw-bold text-white small">Creative UI</span>
+                                <small class="text-white-50" style="font-size: 11px;">Pixel Perfect</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Header End -->
+    <!-- Header / Hero End -->
 
 
     <!-- Video Modal Start -->
