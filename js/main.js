@@ -71,17 +71,51 @@
 
 
     // Modal Video
-    var $videoSrc;
+    var $videoSrc = '';
     $('.btn-play').click(function () {
-        $videoSrc = $(this).data("src");
+        $videoSrc = $(this).data("src") || '';
     });
-    console.log($videoSrc);
+
     $('#videoModal').on('shown.bs.modal', function (e) {
-        $("#video").attr('src', $videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0");
-    })
+        if (!$videoSrc) return;
+        var cleanSrc = String($videoSrc).replace(/\\/g, '/');
+        var isLocalVideo = cleanSrc.match(/\.(mp4|webm|ogg)$/i) || !cleanSrc.match(/^https?:\/\//i);
+
+        if (isLocalVideo) {
+            $('#video').addClass('d-none').attr('src', '');
+            var localVideo = document.getElementById('localVideo');
+            if (localVideo) {
+                $('#localVideo').removeClass('d-none');
+                localVideo.src = cleanSrc;
+                localVideo.load();
+                localVideo.play().catch(function (err) {
+                    console.log('Play prevented or waiting for interaction:', err);
+                });
+            }
+        } else {
+            $('#localVideo').addClass('d-none');
+            var localVideo = document.getElementById('localVideo');
+            if (localVideo) {
+                localVideo.pause();
+                localVideo.src = '';
+            }
+            var embedUrl = cleanSrc + (cleanSrc.indexOf('?') === -1 ? '?autoplay=1' : '&autoplay=1');
+            $('#video').removeClass('d-none').attr('src', embedUrl);
+        }
+    });
+
     $('#videoModal').on('hide.bs.modal', function (e) {
-        $("#video").attr('src', $videoSrc);
-    })
+        // Completely stop playback and turn off all background video/audio
+        var localVideo = document.getElementById('localVideo');
+        if (localVideo) {
+            localVideo.pause();
+            localVideo.currentTime = 0;
+            localVideo.src = '';
+            localVideo.load();
+            $('#localVideo').addClass('d-none');
+        }
+        $("#video").attr('src', '').addClass('d-none');
+    });
 
 
     // Facts counter
@@ -120,36 +154,6 @@
         dots: true,
         loop: true,
     });
-
-
-    // Hero Background Video Controls
-    var heroVideo = document.getElementById('heroBgVideo');
-    if (heroVideo) {
-        $('#heroVideoToggle').on('click', function () {
-            if (heroVideo.paused) {
-                heroVideo.play();
-                $('#heroVideoIcon').removeClass('bi-play-fill').addClass('bi-pause-fill');
-                $(this).attr('title', 'Pause Video');
-            } else {
-                heroVideo.pause();
-                $('#heroVideoIcon').removeClass('bi-pause-fill').addClass('bi-play-fill');
-                $(this).attr('title', 'Play Video');
-            }
-        });
-
-        $('#heroMuteToggle').on('click', function () {
-            if (heroVideo.muted) {
-                heroVideo.muted = false;
-                $('#heroMuteIcon').removeClass('bi-volume-mute-fill').addClass('bi-volume-up-fill');
-                $(this).attr('title', 'Mute Video');
-            } else {
-                heroVideo.muted = true;
-                $('#heroMuteIcon').removeClass('bi-volume-up-fill').addClass('bi-volume-mute-fill');
-                $(this).attr('title', 'Unmute Video');
-            }
-        });
-    }
-
     
 })(jQuery);
 
