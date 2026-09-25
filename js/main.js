@@ -199,6 +199,9 @@
             const subjectVal = document.getElementById("subject") ? document.getElementById("subject").value.trim() : "";
             const messageVal = document.getElementById("message") ? document.getElementById("message").value.trim() : "";
 
+            // Format subject to prominently display the visitor's name in your inbox
+            const fullSubject = nameVal ? `[${nameVal}] ${subjectVal}` : subjectVal;
+
             // Pass comprehensive template parameters to match whatever variable names the template uses
             const templateParams = {
                 name: nameVal,
@@ -208,8 +211,9 @@
                 from_email: emailVal,
                 user_email: emailVal,
                 reply_to: emailVal,
-                subject: subjectVal,
-                title: subjectVal,
+                subject: fullSubject,
+                user_subject: subjectVal,
+                title: fullSubject,
                 message: messageVal
             };
 
