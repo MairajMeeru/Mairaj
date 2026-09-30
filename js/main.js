@@ -77,6 +77,13 @@
     });
 
     $('#videoModal').on('shown.bs.modal', function (e) {
+        // Pause background video while modal is open
+        var heroBgVideo = document.getElementById('heroBgVideo');
+        if (heroBgVideo && !heroBgVideo.paused) {
+            heroBgVideo.pause();
+            heroBgVideo.dataset.wasPlaying = 'true';
+        }
+
         if (!$videoSrc) return;
         var cleanSrc = String($videoSrc).replace(/\\/g, '/');
         var isLocalVideo = cleanSrc.match(/\.(mp4|webm|ogg)$/i) || !cleanSrc.match(/^https?:\/\//i);
@@ -105,7 +112,14 @@
     });
 
     $('#videoModal').on('hide.bs.modal', function (e) {
-        // Completely stop playback and turn off all background video/audio
+        // Resume background video if it was playing before modal opened
+        var heroBgVideo = document.getElementById('heroBgVideo');
+        if (heroBgVideo && heroBgVideo.dataset.wasPlaying === 'true') {
+            heroBgVideo.play().catch(function () {});
+            delete heroBgVideo.dataset.wasPlaying;
+        }
+
+        // Completely stop playback and turn off all modal video/audio
         var localVideo = document.getElementById('localVideo');
         if (localVideo) {
             localVideo.pause();
@@ -116,6 +130,48 @@
         }
         $("#video").attr('src', '').addClass('d-none');
     });
+
+    // Background Video Playback & Sound Controls
+    var heroBgVideo = document.getElementById('heroBgVideo');
+    if (heroBgVideo) {
+        var playPromise = heroBgVideo.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(function (error) {
+                console.log("Autoplay prevented or waiting for interaction:", error);
+            });
+        }
+
+        // Auto-resume background video on first interaction if blocked by browser policy
+        var handleFirstInteraction = function () {
+            if (heroBgVideo && heroBgVideo.paused && heroBgVideo.dataset.userPaused !== 'true') {
+                heroBgVideo.play().catch(function () {});
+            }
+            $(document).off('click touchstart scroll', handleFirstInteraction);
+        };
+        $(document).on('click touchstart scroll', handleFirstInteraction);
+
+        $('#btnToggleVideoPlay').on('click', function () {
+            if (heroBgVideo.paused) {
+                heroBgVideo.play();
+                heroBgVideo.dataset.userPaused = 'false';
+                $(this).html('<i class="fas fa-pause"></i>').attr('title', 'Pause Background Video');
+            } else {
+                heroBgVideo.pause();
+                heroBgVideo.dataset.userPaused = 'true';
+                $(this).html('<i class="fas fa-play"></i>').attr('title', 'Play Background Video');
+            }
+        });
+
+        $('#btnToggleVideoSound').on('click', function () {
+            if (heroBgVideo.muted) {
+                heroBgVideo.muted = false;
+                $(this).html('<i class="fas fa-volume-up"></i><div class="audio-equalizer"><span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span></div>').attr('title', 'Mute Video');
+            } else {
+                heroBgVideo.muted = true;
+                $(this).html('<i class="fas fa-volume-mute"></i>').attr('title', 'Unmute Video');
+            }
+        });
+    }
 
 
     // Facts counter

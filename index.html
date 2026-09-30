@@ -74,33 +74,86 @@
     <!-- Navbar End -->
 
 
-    <!-- Header Start -->
-    <div class="container-fluid bg-white my-6 mt-0" id="home">
-        <div class="container">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6 py-6 pb-0 pt-lg-0 hero-text">
-                    <h3 class="text-primary mb-3">I'm</h3>
-                    <h1 class="display-4 mb-3">M Mairaj</h1>
-                    <h2 class="typed-text-output d-inline"></h2>
-                    <div class="typed-text d-none">Web Designer, Web Developer, Front End Developer, Apps Designer, Apps
-                        Developer</div>
-                    <div class="d-flex align-items-center pt-5">
-                        <a href="Muhammad_Mairaj_CV.pdf" target="_blank" rel="noopener noreferrer"
-                            class="btn btn-primary py-3 px-4 me-5">Download CV</a>
-                        <button type="button" class="btn-play" data-bs-toggle="modal" data-src="img/video.mp4"
-                            data-bs-target="#videoModal">
-                            <span></span>
-                        </button>
-                        <h5 class="ms-4 mb-0 d-none d-sm-block">Play Video</h5>
-                    </div>
+    <!-- Header / Hero Start -->
+    <div class="container-fluid position-relative p-0 overflow-hidden hero-section" id="home">
+        <!-- Background Video & Atmospheric Overlays -->
+        <div class="hero-video-bg">
+            <video id="heroBgVideo" autoplay muted loop playsinline preload="auto" poster="img/bg-header.png">
+                <source src="img/video.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+
+        <!-- Video Playback & Sound Control Widgets -->
+        <div class="hero-video-controls d-flex align-items-center gap-2">
+            <button type="button" id="btnToggleVideoPlay" class="hero-ctrl-btn" title="Pause / Play Background Video"
+                aria-label="Toggle playback">
+                <i class="fas fa-pause"></i>
+            </button>
+            <button type="button" id="btnToggleVideoSound" class="hero-ctrl-btn" title="Unmute / Mute Background Video"
+                aria-label="Toggle audio">
+                <i class="fas fa-volume-mute"></i>
+                <div class="audio-equalizer d-none">
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
+                    <span class="eq-bar"></span>
                 </div>
-                <div class="col-lg-6 mt-6 text-center text-lg-start wow zoomIn d-none d-lg-block" data-wow-delay="0.5s">
-                    <img class="img-fluid" src="img/ss.png" alt="M Mairaj">
+            </button>
+        </div>
+
+        <!-- Hero Content Layer -->
+        <div class="container position-relative hero-content-container">
+            <div class="row align-items-center justify-content-center w-100 py-4">
+                <div class="col-lg-10 col-xl-8 text-center hero-text-wrapper">
+
+                    <!-- Clean Greeting & Name Heading -->
+                    <div class="hero-heading-group mb-3 wow fadeInUp" data-wow-delay="0.1s">
+                        <h3 class="hero-greeting text-secondary mb-2">Hello, I'm</h3>
+                        <h1 class="hero-title display-2 fw-bolder text-white mb-3">
+                            Muhammad <span class="gradient-text">Mairaj</span>
+                        </h1>
+                    </div>
+
+                    <!-- Clean Dynamic Typing Tagline -->
+                    <div class="hero-typed-wrapper mb-4 wow fadeInUp" data-wow-delay="0.2s">
+                        <span class="typed-text-output highlight-role"></span>
+                        <div class="typed-text d-none">Web Designer, Web Developer, Front End Developer, Full Stack Developer</div>
+                    </div>
+
+                    <!-- Clean Professional Call to Action Buttons -->
+                    <div class="d-flex flex-wrap align-items-center justify-content-center gap-3 pt-3 wow fadeInUp"
+                        data-wow-delay="0.3s">
+                        <a href="Muhammad_Mairaj_CV.pdf" target="_blank" rel="noopener noreferrer"
+                            class="btn btn-hero-primary">
+                            <i class="fas fa-download me-2"></i>Download CV
+                        </a>
+                        <a href="#contact" class="btn btn-hero-outline">
+                            <i class="fas fa-paper-plane me-2"></i>Contact Me
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </div>
+
+        <!-- Animated Scroll Down Prompt -->
+        <a href="#about" class="hero-scroll-btn wow fadeIn" data-wow-delay="0.5s"
+            aria-label="Scroll down to About section">
+            <span class="mouse-icon">
+                <span class="mouse-wheel"></span>
+            </span>
+            <span class="scroll-label">Explore More</span>
+            <i class="fas fa-chevron-down scroll-arrow"></i>
+        </a>
+
+        <!-- Seamless Curved Wave Transition Divider into Next Section -->
+        <div class="hero-wave-divider">
+            <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                <path d="M0,45 C320,105 480,10 720,55 C960,100 1200,20 1440,60 L1440,100 L0,100 Z" fill="#ffffff"></path>
+            </svg>
+        </div>
     </div>
-    <!-- Header End -->
+    <!-- Header / Hero End -->
 
 
     <!-- Video Modal Start -->
